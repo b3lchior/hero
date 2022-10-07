@@ -16,16 +16,18 @@ public class Game {
 
 
     public Game() {
-        arena= new Arena(15, 15);
+        arena= new Arena(50, 20);
 
         try {
-            Terminal terminal = new DefaultTerminalFactory().createTerminal();
+            TerminalSize terminalSize = new TerminalSize(arena.getWidth() , arena.getHeight());
+            DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
+            Terminal terminal = terminalFactory.createTerminal();
             screen = new TerminalScreen(terminal);
             TextGraphics graphics = screen.newTextGraphics();
 
             screen.setCursorPosition(null);
             screen.startScreen();
-            screen.doResizeIfNecessary();
+
 
         } catch (IOException e) {
             throw new RuntimeException(e);

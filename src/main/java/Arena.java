@@ -5,11 +5,16 @@ import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 
 import java.io.IOException;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 public class Arena {
     private int width ;
     private int height;
     private Hero hero;
+    private List<Wall> walls;
 
 
 
@@ -17,8 +22,15 @@ public class Arena {
         this.width = w;
         this.height = h;
         hero = new Hero(10,10);
+
     }
 
+    public int getWidth() {
+        return width;
+    }
+    public int getHeight() {
+        return height;
+    }
 
     public void processKey(KeyStroke key , Screen screen) throws IOException {
         if (key.getKeyType() == KeyType.ArrowUp){ moveHero(hero.moveUp());}
@@ -31,7 +43,7 @@ public class Arena {
     }
 
     public void draw(TextGraphics graphics){
-        graphics.setBackgroundColor(TextColor.Factory.fromString("#336699"));
+        graphics.setBackgroundColor(TextColor.Factory.fromString("#4B0082"));
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
         this.hero.draw(graphics);
 
@@ -46,4 +58,7 @@ public class Arena {
         return false;
     }
 
+    private void createWalls() {
+
+    }
 }
