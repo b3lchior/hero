@@ -1,4 +1,5 @@
-import com.googlecode.lanterna.TextCharacter;
+import com.googlecode.lanterna.*;
+import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
@@ -6,14 +7,16 @@ import com.googlecode.lanterna.screen.Screen;
 import java.io.IOException;
 
 public class Arena {
-    private int width;
+    private int width ;
     private int height;
-    private Hero hero = new Hero();
+    private Hero hero;
 
-    public Arena( int w , int h){
-        width = w;
-        height = h;
 
+
+    public Arena( int w, int h){
+        this.width = w;
+        this.height = h;
+        hero = new Hero(10,10);
     }
 
 
@@ -27,8 +30,11 @@ public class Arena {
         }
     }
 
-    public void draw(Screen screen_){
-        screen_.setCharacter( hero.getPosition().getX(), hero.getPosition().getY(), TextCharacter.fromCharacter('X')[0]);
+    public void draw(TextGraphics graphics){
+        graphics.setBackgroundColor(TextColor.Factory.fromString("#336699"));
+        graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
+        this.hero.draw(graphics);
+
     }
 
     private void moveHero(Position position) {
@@ -36,7 +42,7 @@ public class Arena {
     }
 
     private boolean canHeroMove(Position position){
-        if (position.getX() < width && position.getY() < height && position.getX() > -width && position.getY() > -height) return true;
+        if (position.getX() < width && position.getY() < height && position.getX() >0 && position.getY() > 0) return true;
         return false;
     }
 
