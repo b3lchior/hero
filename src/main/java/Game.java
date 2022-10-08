@@ -16,7 +16,7 @@ public class Game {
 
 
     public Game() {
-        arena= new Arena(50, 20);
+        arena= new Arena(100, 48);
 
         try {
             TerminalSize terminalSize = new TerminalSize(arena.getWidth() , arena.getHeight());

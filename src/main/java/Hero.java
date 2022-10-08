@@ -5,29 +5,22 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
 
-public class Hero {
-    private Position position;
+public class Hero extends Element{
+
     public Hero(int x , int y){
-        this.position = new Position(x,y);
+        super (x,y);
     }
 
-    public Position getPosition() {
-        return position;
-    }
 
-    public void setPosition(Position pos){
-        this.position = pos ;
-    }
-
-    public Position moveUp() {return new Position(position.getX(), position.getY() - 1);}                                               // hero movement
-    public Position moveDown() {return new Position(position.getX(), position.getY() + 1);}
-    public Position moveRight() {return new Position(position.getX() + 1, position.getY());}
-    public Position moveLeft() {return new Position(position.getX() - 1, position.getY());}
+    public Position moveUp() {return new Position(this.getPosition().getX(), this.getPosition().getY() - 1);}                                               // hero movement
+    public Position moveDown() {return new Position(this.getPosition().getX(), this.getPosition().getY() + 1);}
+    public Position moveRight() {return new Position(this.getPosition().getX() + 1, this.getPosition().getY());}
+    public Position moveLeft() {return new Position(this.getPosition().getX() - 1, this.getPosition().getY());}
 
     public void draw(TextGraphics graphics) {
         graphics.setForegroundColor(TextColor.Factory.fromString("#F0F8FF"));
         graphics.enableModifiers(SGR.BOLD);
-        graphics.putString(new TerminalPosition(position.getX(), position.getY()), "X");
+        graphics.putString(new TerminalPosition(this.getPosition().getX(), this.getPosition().getY()), "X");
     }
 
 
