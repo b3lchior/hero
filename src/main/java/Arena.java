@@ -16,8 +16,9 @@ public class Arena {
     private List<Wall> walls;
     private List<Coin> coins;
     private List<Monster> monsters;
-    private int countCoins = 0;
-
+    public int countCoins = 0;
+    public int nCoins = 10;
+    public int nMonsters = 30;
 
     public Arena(int w, int h) {
         this.width = w;
@@ -63,13 +64,9 @@ public class Arena {
         graphics.putString(new TerminalPosition(7,0) , String.valueOf(countCoins));
         for (Wall wall : walls) wall.draw(graphics);
 
-        for (Coin coin : coins){
-            if (!coin.getPosition().equals(this.hero.getPosition())) coin.draw(graphics);
-        }
+        for (Coin coin : coins){coin.draw(graphics);}
 
-        for (Monster monster : monsters) {
-            monster.draw(graphics);
-            }
+        for (Monster monster : monsters) {monster.draw(graphics);}
         }
 
 
@@ -106,18 +103,28 @@ public class Arena {
     private List<Coin> createCoins() {
         Random random = new Random();
         ArrayList<Coin> coins = new ArrayList<>();
-        for (int i = 0; i < 5; i++)
-            coins.add(new Coin(random.nextInt(width - 4) + 1, random.nextInt(height - 5) + 1));
+        for (int i = 0; i < nCoins; i++){
+            Coin newcoin = new Coin(random.nextInt(width - 2) + 1, random.nextInt(height - 3) + 2);
+        if(!coins.contains(newcoin) && !newcoin.getPosition().equals(hero.getPosition()))
+            coins.add(newcoin);
+
+        }
         return coins;
     }
 
     private List<Monster> createMonster() {
         Random random = new Random();
+
         ArrayList<Monster> monsters = new ArrayList<>();
-        for (int i = 0; i < 5; i++)
-            monsters.add(new Monster(random.nextInt(width - 2) + 1, random.nextInt(height - 5) + 1));
+        for(int i=0; i<nMonsters; i++){
+            Monster newmonster = new Monster(random.nextInt(width-2) + 1,
+                        random.nextInt(height-3)+2);
+            if(!monsters.contains(newmonster) && !newmonster.getPosition().equals(hero.getPosition()))
+                    monsters.add(newmonster);
+            }
         return monsters;
     }
+
 
 
 

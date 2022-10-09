@@ -18,7 +18,7 @@ public class Hero extends Element{
     public Position moveLeft() {return new Position(this.getPosition().getX() - 1, this.getPosition().getY());}
 
     public void draw(TextGraphics graphics) {
-        graphics.setForegroundColor(TextColor.Factory.fromString("#F0F8FF"));
+        graphics.setForegroundColor(TextColor.Factory.fromString("#F0F9FF"));
         graphics.enableModifiers(SGR.BOLD);
         graphics.putString(new TerminalPosition(this.getPosition().getX(), this.getPosition().getY()), "X");
     }

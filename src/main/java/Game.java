@@ -63,6 +63,12 @@ public class Game {
                 break;
             }
 
+            if (arena.nCoins == arena.countCoins) {
+                System.out.println("Winner Winner Chicken Dinner");
+                screen.close();
+            }
+
+
         }
     }
 }
