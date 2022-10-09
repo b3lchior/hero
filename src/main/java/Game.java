@@ -16,7 +16,7 @@ public class Game {
 
 
     public Game() {
-        arena= new Arena(100, 48);
+        arena= new Arena(50, 24);
 
         try {
             TerminalSize terminalSize = new TerminalSize(arena.getWidth() , arena.getHeight());
@@ -26,6 +26,7 @@ public class Game {
             TextGraphics graphics = screen.newTextGraphics();
 
             screen.setCursorPosition(null);
+            screen.doResizeIfNecessary();
             screen.startScreen();
 
 
@@ -53,7 +54,15 @@ public class Game {
             KeyStroke key = screen.readInput();
             processKey(key);
             if ( key.getKeyType() == KeyType.Character && key.getCharacter() == 'q'){ screen.close();}
+
+
             if ( key.getKeyType() == KeyType.EOF) break ;
+
+            if(arena.verifyMonsterCollisions()){
+                screen.close();
+                break;
+            }
+
         }
     }
 }
