@@ -6,7 +6,7 @@ import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 
 import java.io.IOException;
-
+//teste
 public class Application {
     public static void main(String[] args) throws IOException {
         Game first = new Game() ;
